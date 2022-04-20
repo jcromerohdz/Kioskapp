@@ -5,6 +5,9 @@ import useKiosk from '../hooks/useKiosk'
 const Category = ({category}) => {
 
   const { currentCategory, handleClickCategory } = useKiosk()
+  console.log('hello')
+  console.log(currentCategory)
+
 
   const { name, icon, id } = category
   return (
