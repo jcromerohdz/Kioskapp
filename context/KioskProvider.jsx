@@ -23,9 +23,8 @@ const KioskProvider = ({children}) => {
   }, [])
 
   const handleClickCategory = (id) =>{
-    console.log(id)
     const category = categories.filter( cat => cat.id === id)
-    console.log(category)
+    setCurrentCategory(category[0])
   }
 
 

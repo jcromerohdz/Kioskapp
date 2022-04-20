@@ -8,8 +8,7 @@ const Category = ({category}) => {
 
   const { name, icon, id } = category
   return (
-    <div className="flex items-center gap-4 w-full border p-5 hover:bg-amber-200">
-      <Image
+    <div className={`${currentCategory?.id === id ? 'bg-amber-200' : ''} flex items-center gap-4 w-full border p-5 hover:bg-amber-200`}>      <Image
         width={70}
         height={70}
         src={`/assets/img/icono_${icon}.svg`}
