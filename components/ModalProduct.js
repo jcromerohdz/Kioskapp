@@ -4,7 +4,7 @@ import useKiosk from '../hooks/useKiosk'
 import { formatCurrency } from '../helpers'
 
 const ModalProduct = () => {
-  const {product, handleChangeModal} = useKiosk()
+  const {product, handleChangeModal, handleAddOrder} = useKiosk()
   const [quantity, setQuantity] = useState(1)
   console.log(quantity)
 
@@ -61,6 +61,7 @@ const ModalProduct = () => {
         <button
           type="button"
           className='bg-amber-600 hover:bg-amber-400 px-5 py-2 mt-5 text-white hover:text-black  font-bold uppercase rounded-md'
+          onClick={() => handleAddOrder({...product, quantity})}
         >
           Agregar a la orden
         </button>

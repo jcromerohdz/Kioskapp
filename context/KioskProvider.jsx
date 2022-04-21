@@ -8,6 +8,7 @@ const KioskProvider = ({children}) => {
   const [currentCategory, setCurrentCategory] = useState({})
   const [product, setProduct] = useState({})
   const [modal, setModal] = useState(false)
+  const [order, setOrder] = useState([])
 
   const getCategories = async () => {
     try {
@@ -41,6 +42,10 @@ const KioskProvider = ({children}) => {
     setModal(!modal)
   }
 
+  const handleAddOrder = ({categoryId, image, ...product}) =>{
+    setOrder([...order, product])
+  }
+
   return(
     <KioskContext.Provider
       value={{
@@ -50,7 +55,8 @@ const KioskProvider = ({children}) => {
         product,
         handleSetProduct,
         modal,
-        handleChangeModal
+        handleChangeModal,
+        handleAddOrder
       }}
     >
       {children}
