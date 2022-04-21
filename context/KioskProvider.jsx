@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext } from 'react'
 import axios from 'axios'
+import {toast} from 'react-toastify'
 
 const KioskContext = createContext()
 
@@ -45,13 +46,16 @@ const KioskProvider = ({children}) => {
   const handleAddOrder = ({categoryId, image, ...product}) =>{
     if(order.some(productState => productState.id === product.id)) {
       // Update Order
-      console.log('Updating...')
-
       const updateOrder = order.map(productState => productState.id === product.id ? product : productState)
       setOrder(updateOrder)
+
+      toast.success('Orden Actualizada')
     }else {
       setOrder([...order, product])
+      toast.success('Agreagado a la orden!!')
     }
+
+    setModal(false)
   }
 
   return(
@@ -64,7 +68,8 @@ const KioskProvider = ({children}) => {
         handleSetProduct,
         modal,
         handleChangeModal,
-        handleAddOrder
+        handleAddOrder,
+        order
       }}
     >
       {children}

@@ -1,12 +1,27 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Image from 'next/dist/client/image'
 import useKiosk from '../hooks/useKiosk'
 import { formatCurrency } from '../helpers'
 
 const ModalProduct = () => {
-  const {product, handleChangeModal, handleAddOrder} = useKiosk()
+  const {product, handleChangeModal, handleAddOrder, order} = useKiosk()
   const [quantity, setQuantity] = useState(1)
-  console.log(quantity)
+  const [edit, setEdit] = useState(false)
+
+  useEffect(() => {
+    // Verify if the current modal is in the order
+    if(order.some((orderState) => orderState.id === product.id )){
+      const editProduct = order.find((orderState) => orderState.id === product.id )
+
+      setEdit(true)
+      setQuantity(editProduct.quantity)
+    }else {
+      console.log('no existe')
+    }
+
+
+  }, [product, order])
+
 
   return (
     <div className="md:flex gap-10">
@@ -63,7 +78,7 @@ const ModalProduct = () => {
           className='bg-amber-600 hover:bg-amber-400 px-5 py-2 mt-5 text-white hover:text-black  font-bold uppercase rounded-md'
           onClick={() => handleAddOrder({...product, quantity})}
         >
-          Agregar a la orden
+          {edit ? 'Guardar cambios' : 'Agregar a la orden'}
         </button>
 
       </div>

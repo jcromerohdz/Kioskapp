@@ -1,8 +1,11 @@
 import Head from "next/head"
 import Sidebar from "../components/Sidebar"
-import Modal from 'react-modal';
-import ModalProduct from "../components/ModalProduct";
-import useKiosk from "../hooks/useKiosk";
+import Modal from 'react-modal'
+import { ToastContainer } from 'react-toastify'
+import ModalProduct from "../components/ModalProduct"
+import useKiosk from "../hooks/useKiosk"
+
+import 'react-toastify/dist/ReactToastify.css'
 
 
 const customStyles = {
@@ -48,6 +51,7 @@ export default function Layout({children, pagina}) {
           <ModalProduct />
         </Modal>
       )}
+      <ToastContainer />
     </>
   )
 }
