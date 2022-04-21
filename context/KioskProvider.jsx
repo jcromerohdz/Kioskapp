@@ -43,7 +43,15 @@ const KioskProvider = ({children}) => {
   }
 
   const handleAddOrder = ({categoryId, image, ...product}) =>{
-    setOrder([...order, product])
+    if(order.some(productState => productState.id === product.id)) {
+      // Update Order
+      console.log('Updating...')
+
+      const updateOrder = order.map(productState => productState.id === product.id ? product : productState)
+      setOrder(updateOrder)
+    }else {
+      setOrder([...order, product])
+    }
   }
 
   return(
