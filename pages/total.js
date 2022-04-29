@@ -2,7 +2,7 @@ import Layout from "../layout/Layout"
 
 export default function Summary() {
   return(
-    <Layout page='Total y Confirmar Orden'>
+    <Layout pagina='Total y Confirmar Orden'>
       <h1
         className="text-4xl font-black"
       >
