@@ -12,6 +12,7 @@ const KioskProvider = ({children}) => {
   const [modal, setModal] = useState(false)
   const [order, setOrder] = useState([])
   const [step, setStep] = useState(1)
+  const [name, setName] = useState('')
 
   const router = useRouter()
 
@@ -80,6 +81,11 @@ const KioskProvider = ({children}) => {
     setOrder(updateProduct)
   }
 
+  const placeOrder = async(e) => {
+    e.preventDefault()
+    console.log('Colocar Orden...')
+  }
+
   return(
     <KioskContext.Provider
       value={{
@@ -95,7 +101,9 @@ const KioskProvider = ({children}) => {
         step, 
         handleChangeStep,
         handleEditAmounts,
-        handleDeleteProduct
+        handleDeleteProduct,
+        name,
+        setName
       }}
     >
       {children}

@@ -4,12 +4,11 @@ import useKiosk from "../hooks/useKiosk"
 
 export default function Summary() {
 
-  const { order } = useKiosk()
-  console.log(order)
+  const { order, name, setName } = useKiosk()
 
   const checkOrder = useCallback(() => {
-    return order.length === 0 
-  }, [order])
+    return order.length === 0 || name === '' || name.length < 3 
+  }, [order, name])
 
   const placeOrder = (e) => {
     e.preventDefault()
@@ -47,6 +46,8 @@ export default function Summary() {
             id="nombre"
             type="text"
             className="bg-gray-200 w-full lg:w-1/3 mt-3 p-2 rounded-md"
+            value={name}
+            onChange={e => setName(e.target.value)}
           />
         </div>
 
