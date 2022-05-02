@@ -1,20 +1,16 @@
 import { useEffect, useCallback } from "react"
 import Layout from "../layout/Layout"
 import useKiosk from "../hooks/useKiosk"
+import { formatCurrency } from "../helpers"
 
 export default function Summary() {
 
-  const { order, name, setName } = useKiosk()
+  const { order, name, setName, placeOrder, total } = useKiosk()
 
   const checkOrder = useCallback(() => {
     return order.length === 0 || name === '' || name.length < 3 
   }, [order, name])
 
-  const placeOrder = (e) => {
-    e.preventDefault()
-    console.log('Colocar Orden...')
-
-  }
 
   useEffect(() => {
     checkOrder()
@@ -52,7 +48,7 @@ export default function Summary() {
         </div>
 
         <div className="mt-10">
-          <p className="text-2xl">Total a pagar {''} <span className="font-bold">$200</span></p>
+          <p className="text-2xl">Total a pagar {""} <span className="font-bold">{formatCurrency(total)}</span></p>
         </div>
 
         <div className="mt-5">
