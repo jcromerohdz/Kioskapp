@@ -92,6 +92,19 @@ const KioskProvider = ({children}) => {
     e.preventDefault()
     console.log('Colocar Orden...')
 
+    try {
+      const {data} =await axios.post('/api/orders', {
+        order,
+        name,
+        total,
+        data: Date.now().toString()
+      })
+      console.log(data)
+      
+    } catch (error) {
+      console.log(error)
+    }
+
     console.log(order)
     console.log(name)
     console.log(total)
